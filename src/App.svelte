@@ -64,7 +64,7 @@
 	}
 
 	.card__summary {
-		padding: 2.5rem;
+		padding: 3rem;
 		text-align: center;
 	}
 
