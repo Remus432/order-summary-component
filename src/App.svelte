@@ -1,11 +1,20 @@
 <script>
 	import { gsap } from "gsap";
 	import { onMount } from "svelte";
+	import CSSRulePlugin from "gsap/CSSRulePlugin";
+
+	let illustration;
 
 	onMount(() => {
-		gsap.from(".card", { opacity: 0, y: 100, ease: "power1.out", duration: 1 })
-		gsap.from(".card__summary", { opacity: 0, y: -25, ease: "power1.out", stagger: 0.6, duration: 1 })
-		gsap.from(".card__illustration-img", { opacity: 0, scale: 0, ease: "power2.out", duration: .5 })
+		gsap.from(".card", { opacity: 0, y: 200, ease: "power1.out", duration: 1.5 })
+		gsap.from(".card__summary", { opacity: 0, y: -25, ease: "power1.out", duration: 1 })
+		gsap.from(".card__pricing", {  y: 50, duration: 1, delay: .3 })
+		gsap.from(".card__summary-headline", {  y: 50, duration: 1 })
+		gsap.from(".card__summary-subheadline", {  y: 50, duration: 1, delay: .2 })
+		gsap.from(".card__summary-proceed", {  y: 50, duration: 1, delay: .4 })
+		gsap.from(".card__summary-cancel", {  y: 50, duration: 1, delay: .5 })
+		gsap.from(".card__illustration-img", { scale: 2.5, opacity: 0, ease: "power1.out", duration: 1.25, delay: .5})
+		gsap.to(".mask", { x: 500, duration: 1, delay: .5 })
 	})
 </script>
 
@@ -32,6 +41,22 @@
 		max-width: 400px;
 	}
 	
+	.card__illustration {
+		position: relative;
+		overflow: hidden;
+	}
+
+	.mask {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: #fff;
+		opacity: 1;
+		z-index: 10;
+	}
+
 	.card__illustration-img {
 		width: 100%;
 		border-top-left-radius: 2rem;
@@ -129,7 +154,8 @@
 
 <main>
 	<div class="card">
-		<div class="card__illustration">
+		<div bind:this={illustration} class="card__illustration">
+			<div class="mask"></div>
 			<img src="./images/illustration-hero.svg" alt="Person Listening To Song Illustration" class="card__illustration-img">
 		</div>
 		<div class="card__summary">
