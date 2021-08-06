@@ -24,7 +24,8 @@ body {
 	body {
 		background-color: hsl(225, 100%, 94%);
 		background-image: none;
-		position: relative
+		position: relative;
+		overflow: hidden;
 	}
 
 	body::before {
